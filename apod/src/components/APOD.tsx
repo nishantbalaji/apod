@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react';
-// import ParticlesBG from './Particles';
+import {useState, useEffect} from 'react';
 import './APOD.scss';
 
 const APOD = () => {
     
-    const NASA_KEY=process.env.REACT_APP_NASA_KEY
-    console.log(NASA_KEY);
+    const NASA_KEY=process.env.REACT_APP_NASA_KEY;
 
     interface apodObj {
         title: string,
@@ -35,27 +33,32 @@ const APOD = () => {
     if (!apod) return <div></div>
 
     return (
-        <> 
-        {apod.media_type === "image" ? 
-        (
-            <img src={apod.url} alt={apod.title} className="image"/>
-        ) : 
-        (
-            <iframe
-                title="space-video"
-                src={apod.url}
-                frameBorder="0"
-                allow="encrypted-media"
-                allowFullScreen
-                className="image"
-            />
-        )
-      }
-        <div>
-            <h1>{apod.title}</h1>
-            <h2>{apod.date}</h2>
-            <p>{apod.explanation}</p>
-        </div>
+        <>
+            <div className="title">
+                Astronomy Picture of the Day
+            </div>
+            <div className="apod"> 
+            {apod.media_type === "image" ? 
+            (
+                <img src={apod.url} alt={apod.title} className="image"/>
+            ) : 
+            (
+                <iframe
+                    title="space-video"
+                    src={apod.url}
+                    frameBorder="0"
+                    allow="encrypted-media"
+                    allowFullScreen
+                    className="image"
+                />
+            )
+        }
+            <div>
+                <h1 className="header">{apod.title}</h1>
+                <h2>{apod.date}</h2>
+                <p>{apod.explanation}</p>
+            </div>
+            </div>
         </>
     )
 }
