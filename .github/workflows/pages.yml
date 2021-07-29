@@ -19,7 +19,7 @@ jobs:
     - name: Build
       run: |
         cd apod
-        yarn i
+        yarn
         yarn build
       env:
         REACT_APP_NASA_KEY: ${{ secrets.REACT_APP_NASA_KEY }}
