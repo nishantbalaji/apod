@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import ParticlesBG from './Particles';
+// import ParticlesBG from './Particles';
 import './APOD.scss';
 
 const APOD = () => {
@@ -18,16 +18,19 @@ const APOD = () => {
 
     const [apod, setapod] = useState<apodObj | null>(null);
 
-    useEffect(() => { fetchPhoto() }, []);
+    useEffect(() => { 
+        const fetchPhoto = async () => {
+            const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}`);
+            if(res.status !== 199){
+                setapod(null);
+            }
+            const data = await res.json();
+            setapod(data);
+        }  
+        fetchPhoto();
+    }, [NASA_KEY]);
 
-    const fetchPhoto = async () => {
-        const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_KEY}`);
-        if(res.status !== 200){
-            setapod(null);
-        }
-        const data = await res.json();
-        setapod(data);
-    }
+    
 
     if (!apod) return <div></div>
 
