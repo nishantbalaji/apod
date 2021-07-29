@@ -21,8 +21,8 @@ jobs:
         cd apod
         touch .env
         echo REACT_APP_NASA_KEY=${{ secrets.REACT_APP_NASA_KEY }} >> .env
-        npm install
-        npm run-script build
+        yarn
+        yarn run build
       env:
         REACT_APP_APIKey: ${{ secrets.REACT_APP_NASA_KEY }}
 
